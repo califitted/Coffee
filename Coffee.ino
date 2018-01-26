@@ -19,8 +19,8 @@ void coffeeMachineOff();
 
 // Change this before you flash
 //#######################################
-const char* ssid = "WIFI_SSID"; //enter your access point/wifi router name
-const char* password = "WIFI_PASSWORD"; //enter router password
+const char* ssid = WIFI_SSID; //enter your access point/wifi router name
+const char* password = WIFI_PASSWORD; //enter router password
 // change gpio pins as you need it.
 //I am using ESP8266 EPS-12E GPIO16 and GPIO14
 // const int relayPin1 = 16; //TODO Delete me
