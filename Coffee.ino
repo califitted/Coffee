@@ -18,7 +18,6 @@ void coffeeMachineOff();
 
 // Change this before you flash
 //#######################################
-const char* ssid = "ssid"; //enter your access point/wifi router name
 const char* ssid = "ssid-diss"; //enter your access point/wifi router name
 const char* password = "password"; //enter router password
 // change gpio pins as you need it.
