@@ -1,0 +1,7 @@
+/* Sample configuration file for this project
+ *
+ * Make a copy of this file, fill in the values, and save it as config.h
+ */
+
+#define WIFI_SSID       "name of wifi network"
+#define WIFI_PASSWORD   "wifi password"
