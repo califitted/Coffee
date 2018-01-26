@@ -10,7 +10,7 @@
 // prototypes
 boolean connectWifi();
 
-//on/off callbacks 
+//on/off callbacks
 // void officeLightsOn(); // TODO Delete me
 // void officeLightsOff(); // TODO Delete me
 void coffeeMachineOn();
@@ -19,7 +19,7 @@ void coffeeMachineOff();
 // Change this before you flash
 //#######################################
 const char* ssid = "ssid-diss"; //enter your access point/wifi router name
-const char* password = "password"; //enter router password
+const char* password = "pass-word"; //enter router password
 // change gpio pins as you need it.
 //I am using ESP8266 EPS-12E GPIO16 and GPIO14
 // const int relayPin1 = 16; //TODO Delete me
@@ -41,10 +41,10 @@ void setup()
    pinMode(relayPin2, OUTPUT);
   // Initialise wifi connection
   wifiConnected = connectWifi();
-  
+
   if(wifiConnected){
     upnpBroadcastResponder.beginUdpMulticast();
-    
+
     // Define your switches here. Max 14
     // Format: Alexa invocation name, local port no, on callback, off callback
     // office = new Switch("office lights", 80, officeLightsOn, officeLightsOff); //TODO Delete
@@ -55,12 +55,12 @@ void setup()
     upnpBroadcastResponder.addDevice(*coffeeMachine);
   }
 }
- 
+
 void loop()
 {
    if(wifiConnected){
       upnpBroadcastResponder.serverLoop();
-      
+
       coffeeMachine->serverLoop();
       // office->serverLoop(); //TODO Delete me
    }
@@ -95,7 +95,7 @@ void coffeeMachineOff() {
 boolean connectWifi(){
   boolean state = true;
   int i = 0;
-  
+
   WiFi.mode(WIFI_STA);
   WiFi.begin(ssid, password);
   Serial.println("");
@@ -112,7 +112,7 @@ boolean connectWifi(){
     }
     i++;
   }
-  
+
   if (state){
     Serial.println("");
     Serial.print("Connected to ");
@@ -124,6 +124,6 @@ boolean connectWifi(){
     Serial.println("");
     Serial.println("Connection failed.");
   }
-  
+
   return state;
 }
