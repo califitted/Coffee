@@ -6,7 +6,7 @@
 #include <ESP8266WebServer.h>
 #include <WiFiUdp.h>
 #include <functional>
-#include <config.h>
+#include "config.h"
 
 // prototypes
 boolean connectWifi();
