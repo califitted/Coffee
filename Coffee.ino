@@ -2,6 +2,10 @@
 #include <Switch.h>
 #include <UpnpBroadcastResponder.h>
 
+#include <CallbackFunction.h>
+#include <Switch.h>
+#include <UpnpBroadcastResponder.h>
+
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 #include <WiFiUdp.h>
@@ -38,9 +42,19 @@ Switch *coffeeMachine = NULL;
 void setup()
 {
   Serial.begin(115200);
-   // pinMode(relayPin1, OUTPUT); // TODO Delete me
-   pinMode(relayPin2, OUTPUT);
+  delay(100);
+  Serial.println("serial initialized");
+  pinMode(LED_BUILTIN, OUTPUT); 
+  // pinMode(relayPin1, OUTPUT); // TODO Delete me
+  pinMode(relayPin2, OUTPUT);
   // Initialise wifi connection
+
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(2000);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(2000);
+  digitalWrite(LED_BUILTIN, HIGH);
+    
   wifiConnected = connectWifi();
 
   if(wifiConnected){
@@ -60,10 +74,21 @@ void setup()
 void loop()
 {
    if(wifiConnected){
+    
+      digitalWrite(LED_BUILTIN, HIGH);
       upnpBroadcastResponder.serverLoop();
 
       coffeeMachine->serverLoop();
       // office->serverLoop(); //TODO Delete me
+   }
+  else {
+      
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(2000);
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(2000);
+  
+    Serial.println("Wifi not connected");
    }
 }
 
@@ -105,7 +130,11 @@ boolean connectWifi(){
   // Wait for connection
   Serial.print("Connecting ...");
   while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
+    
+    digitalWrite(LED_BUILTIN, HIGH);
+    delay(1000);
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(1000);
     Serial.print(".");
     if (i > 10){
       state = false;
