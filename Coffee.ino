@@ -16,8 +16,6 @@
 boolean connectWifi();
 
 //on/off callbacks
-// void officeLightsOn(); // TODO Delete me
-// void officeLightsOff(); // TODO Delete me
 void coffeeMachineOn();
 void coffeeMachineOff();
 
@@ -27,7 +25,6 @@ const char* ssid = WIFI_SSID; //enter your access point/wifi router name
 const char* password = WIFI_PASSWORD; //enter router password
 // change gpio pins as you need it.
 //I am using ESP8266 EPS-12E GPIO16 and GPIO14
-// const int relayPin1 = 16; //TODO Delete me
 const int relayPin2 = 14;
 
 //#######################################
@@ -35,7 +32,6 @@ boolean wifiConnected = false;
 
 UpnpBroadcastResponder upnpBroadcastResponder;
 
-// Switch *office = NULL; //TODO Delete me
 Switch *coffeeMachine = NULL;
 
 
@@ -62,11 +58,9 @@ void setup()
 
     // Define your switches here. Max 14
     // Format: Alexa invocation name, local port no, on callback, off callback
-    // office = new Switch("office lights", 80, officeLightsOn, officeLightsOff); //TODO Delete
     coffeeMachine = new Switch("coffee machine", 81, coffeeMachineOn, coffeeMachineOff);
 
     Serial.println("Adding switches upnp broadcast responder");
-    // upnpBroadcastResponder.addDevice(*office); //TODO Delete me
     upnpBroadcastResponder.addDevice(*coffeeMachine);
   }
 }
@@ -79,7 +73,6 @@ void loop()
       upnpBroadcastResponder.serverLoop();
 
       coffeeMachine->serverLoop();
-      // office->serverLoop(); //TODO Delete me
    }
   else {
       
@@ -92,24 +85,14 @@ void loop()
    }
 }
 
-//TODO Delete
-/*
-void officeLightsOn() {
-    Serial.print("Switch 1 turn on ...");
-    digitalWrite(relayPin1, HIGH);
-}
 
-void officeLightsOff() {
-    Serial.print("Switch 1 turn off ...");
-    digitalWrite(relayPin1, LOW);
-}
-*/
 
 void coffeeMachineOn() {
     Serial.print("Switch 2 turn on ...");
     digitalWrite(relayPin2, HIGH);
-    delay(500);
-    digitalWrite(relayPin2, LOW);
+//    delay(500);
+//    digitalWrite(relayPin2, LOW);
+    
 }
 
 void coffeeMachineOff() {
